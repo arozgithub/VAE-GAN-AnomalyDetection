@@ -1,5 +1,5 @@
 # VAE-GAN-AnomalyDetection
-A comparative study of GANs and VAEs for anomaly detection in image datasets (MNIST &amp; Fashion MNIST) with real-world extension using VAE on finance, healthcare, and cybersecurity data.
+A comparative study of GANs and VAEs for anomaly detection in image datasets (MNIST & Fashion MNIST) with real-world extension using VAE on finance, healthcare, and cybersecurity data.
 
 # 🎯 Generative AI-Based Anomaly Detection in Images and Signals
 
@@ -32,87 +32,90 @@ This project implements and compares deep generative models — **GANs**, **Auto
 - Show 5 random images per dataset
 - Display number of samples, class labels, and class distributions
 
-##🤖 Part 2: Generative Adversarial Networks (GANs)
-##🏗️ Architecture:
-Generator: Transforms random noise to image
+## 🤖 Part 2: Generative Adversarial Networks (GANs)
 
-Discriminator: Classifies real vs. generated images
+### 🏗️ Architecture:
+- Generator: Transforms random noise to image
+- Discriminator: Classifies real vs. generated images
 
-Loss Functions:
+**Loss Functions:**
+```python
 d_loss = -torch.mean(torch.log(D(real)) + torch.log(1 - D(fake)))
 g_loss = -torch.mean(torch.log(D(G(z))))
+```
 
+### 📈 Training:
+- Train on MNIST Digits
+- Train on Fashion MNIST (e.g., class "Shoe")
 
-##📈 Training:
-Train on MNIST Digits
+### 🎨 Image Generation:
+- Generate 10 random digit images
+- Generate 5 images of digit "3" (roll number: L238023)
+- Generate fashion images of shoes
 
-Train on Fashion MNIST (e.g., class "Shoe")
+---
 
-##🎨 Image Generation:
-Generate 10 random digit images
+## 🔁 Part 3: Variational Autoencoders (VAE)
 
-Generate 5 images of digit "3" (roll number: L238023)
+### 🧬 Architecture:
+- Encoder → Latent vector z (mu, logvar)
+- Reparameterization Trick
+- Decoder reconstructs from z
 
-Generate fashion images of shoes
-
-##🔁 Part 3: Variational Autoencoders (VAE)
-##🧬 Architecture:
-Encoder → Latent vector z (mu, logvar)
-
-Reparameterization Trick
-
-Decoder reconstructs from z
-
-Loss = BCE + KL Divergence
-
-python
-Copy
-Edit
+**Loss = BCE + KL Divergence**
+```python
 kl_div = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-##✅ Tasks:
-Train VAE on MNIST Digits and Fashion MNIST (shoe)
+```
 
-Visualize latent space using t-SNE or PCA
+### ✅ Tasks:
+- Train VAE on MNIST Digits and Fashion MNIST (shoe)
+- Visualize latent space using t-SNE or PCA
+- Generate new digits, including 5 images of digit "2" (roll number: L238023)
 
-Generate new digits, including 5 images of digit "2" (roll number: L238023)
-
-🧪 Run:
-bash
-Copy
-Edit
+### 🧪 Run:
+```bash
 python vae/train_vae.py --dataset mnist --digit 2
 python vae/train_vae.py --dataset fashion --class shoe
+```
 
-##🔍 Part 4: GAN vs. VAE Comparison
-Aspect	GAN	VAE
-Image Quality	High fidelity	Blurry but diverse
-Training Stability	Sensitive to tuning	Stable
-Latent Representation	Implicit, hard to interpret	Explicit and structured
-Sampling Control	Random noise to image	Vector manipulation possible
+---
 
-##🌍 Part 5: Real-World Anomaly Detection with VAE
-✅ Problem Chosen:
-[e.g., Financial Fraud Detection]
+## 🔍 Part 4: GAN vs. VAE Comparison
 
-Fraud costs banks $42B annually.
+| Aspect                | GAN                          | VAE                          |
+|-----------------------|------------------------------|------------------------------|
+| Image Quality         | High fidelity                | Blurry but diverse           |
+| Training Stability    | Sensitive to tuning          | Stable                       |
+| Latent Representation | Implicit, hard to interpret  | Explicit and structured      |
+| Sampling Control      | Random noise to image        | Vector manipulation possible |
 
-VAE detects suspicious transactions based on reconstruction loss.
+---
 
-##🧬 Dataset:
-Real-world dataset with labeled normal & anomalous instances
+## 🌍 Part 5: Real-World Anomaly Detection with VAE
 
+### ✅ Problem Chosen:
+**Example: Financial Fraud Detection**
 
-##🧠 Model:
-VAE trained on only normal data
+> Fraud costs banks $42B annually.  
+> VAE detects suspicious transactions based on reconstruction loss.
 
-Anomalies flagged by reconstruction error
+### 🧬 Dataset:
+- Real-world dataset with labeled normal & anomalous instances
 
-##📊 Evaluation:
-Metrics: Precision, Recall, F1-Score
+### 🧠 Model:
+- VAE trained on only normal data
+- Anomalies flagged by reconstruction error
 
-Plots: Reconstruction Error Histogram, ROC Curve
+### 📊 Evaluation:
+- **Metrics**: Precision, Recall, F1-Score
+- **Plots**: Reconstruction Error Histogram, ROC Curve
 
-bash ##Clone the repo and install dependencies:
+---
+
+## 🚀 Clone the Repo and Install Dependencies
+
+```bash
 git clone https://github.com/yourusername/generative-anomaly-detection.git
 cd generative-anomaly-detection
 pip install -r requirements.txt
+```
