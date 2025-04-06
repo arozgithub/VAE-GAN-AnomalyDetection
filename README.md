@@ -115,7 +115,7 @@ python vae/train_vae.py --dataset fashion --class shoe
 ## 🚀 Clone the Repo and Install Dependencies
 
 ```bash
-git clone https://github.com/yourusername/generative-anomaly-detection.git
+git clone https://github.com/arozgithub/VAE-GAN-AnomalyDetection.git
 cd generative-anomaly-detection
 pip install -r requirements.txt
 ```
